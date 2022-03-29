@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">ToDoListAPp</string>
+    <string name="app_name">mykloud list</string>
+    <string name="add">add</string>
+    <string name="remove">remove</string>
 </resources>
