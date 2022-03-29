@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">mykloud list</string>
-    <string name="add">add</string>
+    <string name="add">Add</string>
     <string name="remove">remove</string>
+    <string name="add_task">Add Task</string>
+    <string name="title">Title</string>
+    <string name="priority">Priority</string>
+    <string name="cancel">Cancel</string>
 </resources>
