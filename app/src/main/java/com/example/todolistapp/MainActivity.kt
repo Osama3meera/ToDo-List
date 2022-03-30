@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.addFloatingBtn.setOnClickListener {
-
+            CustomDialog().show(supportFragmentManager,"Custom Fragment")
         }
     }
 }

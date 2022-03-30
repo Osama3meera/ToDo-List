@@ -5,17 +5,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <CheckBox
+    <TextView
         android:id="@+id/boxLow"
-        android:layout_width="24dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:button="@drawable/box_red"
-        android:buttonTint="@color/green"
-        app:layout_constraintStart_toEndOf="@+id/boxMeduim"
-        app:layout_constraintTop_toBottomOf="@+id/tvPriority"
-        tools:ignore="TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/green_radius_bg"
+        app:layout_constraintStart_toEndOf="@+id/boxMedium"
+        app:layout_constraintTop_toBottomOf="@+id/tvPriority" />
+
+    <TextView
+        android:id="@+id/boxMedium"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/blue_radius_bg"
+        app:layout_constraintStart_toEndOf="@+id/boxHigh"
+        app:layout_constraintTop_toBottomOf="@+id/tvPriority" />
 
     <TextView
         android:id="@+id/tvAddTask"
@@ -57,30 +65,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTitle" />
 
-    <CheckBox
-        android:id="@+id/boxHigh"
-        android:layout_width="24dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp"
-        android:button="@drawable/box_red"
-        android:buttonTint="@color/red"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPriority"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <CheckBox
-        android:id="@+id/boxMeduim"
-        android:layout_width="24dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:button="@drawable/box_red"
-        android:buttonTint="@color/blue"
-        app:layout_constraintStart_toEndOf="@+id/boxHigh"
-        app:layout_constraintTop_toBottomOf="@+id/tvPriority"
-        tools:ignore="TouchTargetSizeCheck" />
-
     <TextView
         android:id="@+id/tvCancel"
         android:layout_width="wrap_content"
@@ -114,5 +98,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+    <TextView
+        android:id="@+id/boxHigh"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/red_radius_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPriority" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
