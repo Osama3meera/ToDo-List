@@ -14,6 +14,7 @@
         android:layout_marginBottom="20dp"
         android:clickable="true"
         android:contentDescription="@string/remove"
+        android:visibility="gone"
         app:backgroundTint="@color/blue"
         app:fabCustomSize="60dp"
         app:layout_constraintBottom_toTopOf="@+id/addFloatingBtn"

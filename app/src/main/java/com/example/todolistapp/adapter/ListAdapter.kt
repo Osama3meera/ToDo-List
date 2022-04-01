@@ -1,9 +1,11 @@
 package com.example.todolistapp.adapter
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
@@ -16,6 +18,7 @@ class ListAdapter() :
     lateinit var context: Context
     lateinit var items: ArrayList<ListResponse>
     lateinit var deleteListInterface: DeleteListInterface
+
 
     constructor(context: Context, items: ArrayList<ListResponse>,deleteListInterface: DeleteListInterface) : this() {
         this.context = context
@@ -50,8 +53,12 @@ class ListAdapter() :
 
         holder.itemView.setOnClickListener {
            deleteListInterface.delete(items[position].id)
+            deleteListInterface.notifyItemRemoved(true)
         }
 
+        holder.edit.setOnClickListener {
+            deleteListInterface.notifyEdit(true)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -65,6 +72,7 @@ class ListAdapter() :
         var boxMedium: TextView = itemView.findViewById(R.id.boxMedium)
         var boxLow: TextView = itemView.findViewById(R.id.boxLow)
         var res = itemView.resources
+        var edit : ImageView = itemView.findViewById(R.id.edit)
         var highBoxStatus = false
         var mediumBoxStatus = false
         var lowBoxStatus = false
@@ -72,6 +80,13 @@ class ListAdapter() :
     }
 
     override fun delete(id: String) {
+    }
+
+    override fun notifyItemRemoved(isItemRemoved: Boolean) {
+    }
+
+    override fun notifyEdit(isItemEdited: Boolean) {
+
     }
 
 }

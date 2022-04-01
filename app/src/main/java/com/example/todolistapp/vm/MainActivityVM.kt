@@ -10,7 +10,7 @@ import com.example.todolistapp.model.ListResponse
 class MainActivityVM : ViewModel() {
     private val repo = Repo()
 
-    fun getList() : LiveData<ArrayList<ListResponse>> {
+    fun getList() : MutableLiveData<ArrayList<ListResponse>> {
 
         return repo.getList()
 

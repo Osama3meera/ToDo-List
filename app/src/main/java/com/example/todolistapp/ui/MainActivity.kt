@@ -4,6 +4,8 @@ package com.example.todolistapp.ui
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,14 +16,12 @@ import com.example.todolistapp.vm.MainActivityVM
 
 class MainActivity : AppCompatActivity(),DeleteListInterface {
 
-
-
-
+    lateinit var binding: ActivityMainBinding
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val vm = ViewModelProvider(this).get(MainActivityVM::class.java)
@@ -35,11 +35,26 @@ class MainActivity : AppCompatActivity(),DeleteListInterface {
             binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
             val adapter = ListAdapter(this, listOfTasks,this)
             binding.recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
         })
     }
     override fun delete(id: String) {
         val vm = ViewModelProvider(this).get(MainActivityVM::class.java)
-        vm.deleteList(id)
+        vm.deleteList(id).observe(this, Observer {
+            val listOfTasks = it
+            Log.w(id , "Delete {}")
+        })
+        vm.getList()
     }
 
+    override fun notifyItemRemoved(isItemRemoved: Boolean) {
+        if (isItemRemoved)
+            binding.removeFloatingBtn.visibility = View.VISIBLE
+        else
+            binding.removeFloatingBtn.visibility = View.GONE
+    }
+
+    override fun notifyEdit(isItemEdited: Boolean) {
+
+    }
 }

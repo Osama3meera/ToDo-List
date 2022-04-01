@@ -102,6 +102,7 @@ class CustomDialog : DialogFragment() {
         tvAdd.setOnClickListener {
 
             vm.insetList(etTitle.text.toString(),priority,context)
+            vm.getList()
             dialog?.hide()
         }
 

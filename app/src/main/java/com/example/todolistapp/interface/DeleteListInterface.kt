@@ -1,6 +1,8 @@
 package com.example.todolistapp.`interface`
 
-interface DeleteListInterface   {
+interface DeleteListInterface {
 
-    fun  delete(id:String)
+    fun delete(id: String)
+    fun notifyItemRemoved(isItemRemoved: Boolean)
+    fun notifyEdit(isItemEdited : Boolean)
 }

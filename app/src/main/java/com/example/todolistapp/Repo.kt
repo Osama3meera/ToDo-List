@@ -59,6 +59,7 @@ class Repo {
         RestClient.getService().deleteList(id).enqueue(object : Callback<ListResponse>{
             override fun onResponse(call: Call<ListResponse>, response: Response<ListResponse>) {
 
+                Log.w(id, "Deleted id is {}")
                 deleteListResponse.value = response.body()
 
             }
