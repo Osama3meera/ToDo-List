@@ -1,19 +1,27 @@
 package com.example.todolistapp.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
+import com.example.todolistapp.`interface`.DeleteListInterface
 import com.example.todolistapp.model.ListResponse
 
-class ListAdapter(var context: Context, var items: ArrayList<ListResponse>) :
-    RecyclerView.Adapter<ListAdapter.ViewItem>() {
+class ListAdapter() :
+    RecyclerView.Adapter<ListAdapter.ViewItem>(), DeleteListInterface {
 
+    lateinit var context: Context
+    lateinit var items: ArrayList<ListResponse>
+    lateinit var deleteListInterface: DeleteListInterface
+
+    constructor(context: Context, items: ArrayList<ListResponse>,deleteListInterface: DeleteListInterface) : this() {
+        this.context = context
+        this.items = items
+        this.deleteListInterface =deleteListInterface
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapter.ViewItem {
         val itemView: View = LayoutInflater.from(parent.context)
@@ -40,6 +48,9 @@ class ListAdapter(var context: Context, var items: ArrayList<ListResponse>) :
             holder.boxHigh.visibility = View.GONE
         }
 
+        holder.itemView.setOnClickListener {
+           deleteListInterface.delete(items[position].id)
+        }
 
     }
 
@@ -58,6 +69,9 @@ class ListAdapter(var context: Context, var items: ArrayList<ListResponse>) :
         var mediumBoxStatus = false
         var lowBoxStatus = false
 
+    }
+
+    override fun delete(id: String) {
     }
 
 }

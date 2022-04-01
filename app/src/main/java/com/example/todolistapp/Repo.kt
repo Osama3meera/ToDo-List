@@ -54,4 +54,21 @@ class Repo {
         return insertListResponse
     }
 
+    fun deleteList(id :String):MutableLiveData<ListResponse>{
+        val deleteListResponse = MutableLiveData<ListResponse>()
+        RestClient.getService().deleteList(id).enqueue(object : Callback<ListResponse>{
+            override fun onResponse(call: Call<ListResponse>, response: Response<ListResponse>) {
+
+                deleteListResponse.value = response.body()
+
+            }
+
+            override fun onFailure(call: Call<ListResponse>, t: Throwable) {
+
+            }
+
+        })
+        return deleteListResponse
+    }
+
 }

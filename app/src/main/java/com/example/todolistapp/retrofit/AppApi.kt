@@ -3,6 +3,7 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface AppApi {
+
     @GET("lists")
     fun getList(): Call<ArrayList<ListResponse>>
 
@@ -12,5 +13,16 @@ interface AppApi {
         @Field("name") name: String,
         @Field("priority") priority: Int
     ): Call<ArrayList<ListResponse>>
+
+    @DELETE("/lists/{id}")
+    fun deleteList(
+        @Path("id") id:String
+    ): Call<ListResponse>
+
+    @PUT("/lists/:id")
+    fun updateList(
+        @Body listResponse: ListResponse
+    ): Call<ListResponse>
+
 }
 
