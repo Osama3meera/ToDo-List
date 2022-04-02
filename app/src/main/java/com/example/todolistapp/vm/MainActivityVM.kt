@@ -1,7 +1,6 @@
 package com.example.todolistapp.vm
 
 import android.content.Context
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.todolistapp.Repo
@@ -24,5 +23,9 @@ class MainActivityVM : ViewModel() {
     fun deleteList(id :String) : MutableLiveData<ListResponse>{
 
         return repo.deleteList(id)
+    }
+
+    fun updateList(listResponse: ListResponse) : MutableLiveData<ListResponse>{
+        return repo.updateList(listResponse)
     }
 }

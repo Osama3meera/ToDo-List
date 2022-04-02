@@ -19,8 +19,9 @@ interface AppApi {
         @Path("id") id:String
     ): Call<ListResponse>
 
-    @PUT("/lists/:id")
+    @PUT("/lists/{id}")
     fun updateList(
+        @Path ("id") id: String,
         @Body listResponse: ListResponse
     ): Call<ListResponse>
 

@@ -57,7 +57,7 @@ class ListAdapter() :
         }
 
         holder.edit.setOnClickListener {
-            deleteListInterface.notifyEdit(true)
+            deleteListInterface.notifyEdit(true,items[position].id)
         }
     }
 
@@ -85,7 +85,7 @@ class ListAdapter() :
     override fun notifyItemRemoved(isItemRemoved: Boolean) {
     }
 
-    override fun notifyEdit(isItemEdited: Boolean) {
+    override fun notifyEdit(isItemEdited: Boolean,id: String) {
 
     }
 

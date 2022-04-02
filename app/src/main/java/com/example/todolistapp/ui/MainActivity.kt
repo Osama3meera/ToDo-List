@@ -4,7 +4,6 @@ package com.example.todolistapp.ui
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +13,7 @@ import com.example.todolistapp.adapter.ListAdapter
 import com.example.todolistapp.databinding.ActivityMainBinding
 import com.example.todolistapp.vm.MainActivityVM
 
-class MainActivity : AppCompatActivity(),DeleteListInterface {
+class MainActivity : AppCompatActivity(), DeleteListInterface {
 
     lateinit var binding: ActivityMainBinding
 
@@ -27,24 +26,31 @@ class MainActivity : AppCompatActivity(),DeleteListInterface {
         val vm = ViewModelProvider(this).get(MainActivityVM::class.java)
 
         binding.addFloatingBtn.setOnClickListener {
-            CustomDialog().show(supportFragmentManager, "Custom Fragment")
+            CustomDialog("Add","").show(supportFragmentManager, "Add Fragment")
         }
 
-        vm.getList().observe(this, Observer {
+        vm.getList().observe(this, {
             val listOfTasks = it
-            binding.recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-            val adapter = ListAdapter(this, listOfTasks,this)
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            val adapter = ListAdapter(this, listOfTasks, this)
             binding.recyclerView.adapter = adapter
             adapter.notifyDataSetChanged()
         })
     }
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun delete(id: String) {
         val vm = ViewModelProvider(this).get(MainActivityVM::class.java)
-        vm.deleteList(id).observe(this, Observer {
+        vm.deleteList(id)
+        vm.getList().observe(this, {
             val listOfTasks = it
-            Log.w(id , "Delete {}")
+            binding.recyclerView.layoutManager =
+                LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            val adapter = ListAdapter(this, listOfTasks, this)
+            binding.recyclerView.adapter = adapter
+            adapter.notifyDataSetChanged()
         })
-        vm.getList()
     }
 
     override fun notifyItemRemoved(isItemRemoved: Boolean) {
@@ -54,7 +60,8 @@ class MainActivity : AppCompatActivity(),DeleteListInterface {
             binding.removeFloatingBtn.visibility = View.GONE
     }
 
-    override fun notifyEdit(isItemEdited: Boolean) {
+    override fun notifyEdit(isItemEdited: Boolean, id: String) {
+        CustomDialog("Edit",id).show(supportFragmentManager, "Edit Fragment")
 
     }
 }
